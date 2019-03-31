@@ -3,7 +3,6 @@ package com.runningsnail.wowweather.log;
 import android.os.Process;
 import android.util.Log;
 
-
 import com.runningsnail.wowweather.BuildConfig;
 
 import java.text.SimpleDateFormat;
@@ -13,7 +12,7 @@ import java.util.Date;
  * @author create by yongjie on 2018/6/29
  * Log工具类
  */
-public class HiLog {
+public class Logger {
 
     private static volatile boolean OUTPUT_LOG = BuildConfig.LOG_ENABLE;
 

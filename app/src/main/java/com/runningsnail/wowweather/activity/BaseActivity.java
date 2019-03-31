@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+
+import com.runningsnail.wowweather.log.Logger;
 
 
 /**
@@ -18,8 +21,8 @@ public abstract class BaseActivity extends AppCompatActivity {
 	protected String TAG;
 
 	@Override
-	public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-		super.onCreate(savedInstanceState, persistentState);
+	protected void onCreate(@Nullable Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 		buildLogTag();
 		setContentView(getContentViewId());
 		initView();
@@ -30,7 +33,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 	 * 构建Activity的基础Log,用的是子类的类名
 	 */
 	private void buildLogTag() {
-		TAG = this.getClass().getName();
+		TAG = this.getClass().getSimpleName();
 	}
 
 	/**
