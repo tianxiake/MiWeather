@@ -1,4 +1,4 @@
-package com.runningsnail.wowweather.utils;
+package com.runningsnail.base.utils;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -24,7 +24,7 @@ public class FileUtils {
      * @return 文件
      */
     public static File getFileByPath(String filePath) {
-        return StringUtils.isSpace(filePath) ? null : new File(filePath);
+        return HiStringUtils.isSpace(filePath) ? null : new File(filePath);
     }
 
     /**
@@ -577,7 +577,7 @@ public class FileUtils {
      * @return filePath最长目录否则返回“”
      */
     public static String getDirName(String filePath) {
-        if (StringUtils.isSpace(filePath)) {
+        if (HiStringUtils.isSpace(filePath)) {
             return "";
         }
         int lastSep = filePath.lastIndexOf(File.separator);
@@ -604,7 +604,7 @@ public class FileUtils {
      * @return 返回文件名或者是""
      */
     public static String getFileName(String filePath) {
-        if (StringUtils.isSpace(filePath)) {
+        if (HiStringUtils.isSpace(filePath)) {
             return "";
         }
         int lastSep = filePath.lastIndexOf(File.separator);
@@ -631,7 +631,7 @@ public class FileUtils {
      * @return 返回不带拓展名的文件名否则返回""
      */
     public static String getFileNameNoExtension(String filePath) {
-        if (StringUtils.isSpace(filePath)) {
+        if (HiStringUtils.isSpace(filePath)) {
             return "";
         }
         int lastPoi = filePath.lastIndexOf('.');
@@ -665,7 +665,7 @@ public class FileUtils {
      * @return 返回扩展名否则返回""
      */
     public static String getFileExtension(String filePath) {
-        if (StringUtils.isSpace(filePath)) {
+        if (HiStringUtils.isSpace(filePath)) {
             return "";
         }
         int lastPoi = filePath.lastIndexOf('.');

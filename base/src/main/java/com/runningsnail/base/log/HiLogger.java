@@ -1,9 +1,10 @@
-package com.runningsnail.wowweather.log;
+package com.runningsnail.base.log;
 
 import android.os.Process;
 import android.util.Log;
 
-import com.runningsnail.wowweather.BuildConfig;
+
+import com.runningsnail.base.BuildConfig;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,7 +13,7 @@ import java.util.Date;
  * @author create by yongjie on 2018/6/29
  * Log工具类
  */
-public class Logger {
+public class HiLogger {
 
     private static volatile boolean OUTPUT_LOG = BuildConfig.LOG_ENABLE;
 

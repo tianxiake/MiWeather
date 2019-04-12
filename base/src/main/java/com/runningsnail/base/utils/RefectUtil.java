@@ -1,4 +1,4 @@
-package com.runningsnail.wowweather.utils;
+package com.runningsnail.base.utils;
 
 
 import android.util.Log;

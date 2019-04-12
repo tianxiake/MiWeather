@@ -1,4 +1,4 @@
-package com.runningsnail.wowweather.utils;
+package com.runningsnail.base.utils;
 
 import java.io.Closeable;
 import java.io.IOException;

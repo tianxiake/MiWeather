@@ -2,9 +2,9 @@ package com.runningsnail.wowweather.net;
 
 import android.support.test.runner.AndroidJUnit4;
 
+import com.runningsnail.base.log.HiLogger;
 import com.runningsnail.wowweather.entity.FutureWeather;
 import com.runningsnail.wowweather.entity.NowWeather;
-import com.runningsnail.wowweather.log.Logger;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,23 +29,22 @@ public class WeatherServiceTest {
 		nowWeather.subscribeOn(Schedulers.io()).observeOn(Schedulers.io()).subscribe(new Observer<NowWeather>() {
 			@Override
 			public void onSubscribe(Disposable d) {
-				Logger.d(TAG, "NowWeather onSubscribe");
+				HiLogger.d(TAG, "NowWeather onSubscribe");
 			}
 
 			@Override
 			public void onNext(NowWeather nowWeather) {
-				Logger.d(TAG, "%s %s", "NowWeather", nowWeather.toString());
+				HiLogger.d(TAG, "%s %s", "NowWeather", nowWeather.toString());
 			}
 
 			@Override
 			public void onError(Throwable e) {
-				Logger.d(TAG, "NowWeather onError");
+				HiLogger.d(TAG, "NowWeather onError");
 			}
 
 			@Override
 			public void onComplete() {
-
-				Logger.d(TAG, "NowWeather onComplete");
+				HiLogger.d(TAG, "NowWeather onComplete");
 			}
 		});
 
@@ -58,22 +57,22 @@ public class WeatherServiceTest {
 		futureWeather.subscribeOn(Schedulers.io()).observeOn(Schedulers.io()).subscribe(new Observer<FutureWeather>() {
 			@Override
 			public void onSubscribe(Disposable d) {
-				Logger.d(TAG, "FutureWeather onSubscribe");
+				HiLogger.d(TAG, "FutureWeather onSubscribe");
 			}
 
 			@Override
 			public void onNext(FutureWeather futureWeather) {
-				Logger.d(TAG, "%s %s", "futureWeather", futureWeather.toString());
+				HiLogger.d(TAG, "%s %s", "futureWeather", futureWeather.toString());
 			}
 
 			@Override
 			public void onError(Throwable e) {
-				Logger.d(TAG, "FutureWeather onError");
+				HiLogger.d(TAG, "FutureWeather onError");
 			}
 
 			@Override
 			public void onComplete() {
-				Logger.d(TAG, "FutureWeather onComplete");
+				HiLogger.d(TAG, "FutureWeather onComplete");
 			}
 		});
 	}

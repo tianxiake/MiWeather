@@ -1,10 +1,10 @@
-package com.runningsnail.wowweather.utils;
+package com.runningsnail.base.utils;
 
 /**
  * @author yongjie on 2017/12/9.
  */
 
-public final class StringUtils {
+public final class HiStringUtils {
 
 
     /**
@@ -178,5 +178,22 @@ public final class StringUtils {
             }
         }
         return new String(chars);
+    }
+
+    /**
+     * 判断是不是空并且值不能是null
+     *
+     * @param str
+     * @return
+     */
+    public static boolean isBlank(String str) {
+        return isEmpty(str) || "null".equals(str);
+    }
+
+    /**
+     * 判断是不是空的
+     */
+    public static boolean isEmpty(String str) {
+        return str == null || str.trim().length() == 0;
     }
 }

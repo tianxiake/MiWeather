@@ -1,4 +1,4 @@
-package com.runningsnail.wowweather.utils;
+package com.runningsnail.base.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -9,7 +9,7 @@ import java.util.TimeZone;
 /**
  * 日期工具类(未特别说明的均为系统默认时区下的时间)
  */
-public class DateUtil {
+public class HiDateUtils {
     /**
      * 1s==1000ms
      */
@@ -235,7 +235,7 @@ public class DateUtil {
      */
     public static String getDiffTime(long date) {
         String strTime = "很久很久以前";
-        long time = Math.abs(new Date().getTime() - date);
+        long time = Math.abs(System.currentTimeMillis() - date);
         // 一分钟以内
         if (time < TIME_NUMBERS * TIME_MILLISECONDS) {
             strTime = "刚刚";

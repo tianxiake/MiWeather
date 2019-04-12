@@ -1,12 +1,8 @@
 package com.runningsnail.wowweather.activity;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-
-import com.runningsnail.wowweather.log.Logger;
 
 
 /**
@@ -32,7 +28,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 	/**
 	 * 构建Activity的基础Log,用的是子类的类名
 	 */
-	private void buildLogTag() {
+	protected void buildLogTag() {
 		TAG = this.getClass().getSimpleName();
 	}
 

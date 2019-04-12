@@ -1,7 +1,6 @@
 package com.runningsnail.wowweather.net;
 
-
-import com.runningsnail.wowweather.log.Logger;
+import com.runningsnail.base.log.HiLogger;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -21,7 +20,7 @@ public class ServiceFactory {
 		HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
 			@Override
 			public void log(String message) {
-				Logger.d(TAG, message);
+				HiLogger.d(TAG, message);
 			}
 		});
 		httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -34,7 +33,7 @@ public class ServiceFactory {
 				.addConverterFactory(GsonConverterFactory.create())
 				.addCallAdapterFactory(RxJava2CallAdapterFactory.create())
 				.build();
-		Logger.d(TAG, "build weatherRetrofit %s", weatherRetrofit);
+		HiLogger.d(TAG, "build weatherRetrofit %s", weatherRetrofit);
 	}
 
 	/**
