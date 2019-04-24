@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">WowWeather</string>
+
+
+    <!--错误提示界面-->
+    <string name="error_network_invalid_hint">当前网络不可用,请检查网络</string>
+    <string name="error_request_data_error_hint">数据请求失败,请刷新重试</string>
+    <string name="error_retry">刷新重试</string>
+
+
 </resources>
