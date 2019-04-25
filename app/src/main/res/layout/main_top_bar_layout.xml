@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp">
+
+    <!--添加按钮-->
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/iv_top_add"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#0000FF" />
+
+    <!--选项菜单-->
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/iv_top_option"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#FF0000" />
+
+    <!--位置名称-->
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tv_top_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="无为"
+        android:textSize="18sp" />
+
+    <!--指示器控件-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"
+        android:layout_below="@id/tv_top_location"
+        android:layout_centerInParent="true"
+        android:background="#00FF00">
+
+    </LinearLayout>
+
+
+</RelativeLayout>
