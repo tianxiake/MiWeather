@@ -4,6 +4,8 @@ buildscript {
     repositories {
         google()
         jcenter()
+        //配置阿里云jcenter
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
         
     }
     dependencies {
@@ -18,66 +20,66 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
+        //配置阿里云jcenter
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
     }
 }
 
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
 
 ext {
-//  android 相关参数管理，可以在 module 中使用 rootProject.ext.android.XXX
-//  比如 compileSdkVersion rootProject.ext.android.compileSdkVersion
-    android = [compileSdkVersion: 26,
-               buildToolsVersion: "27.0.3",
-               minSdkVersion    : 19,
-               targetSdkVersion : 26,
-               versionCode      : 1,
-               versionName      : "1.0"]
+    //apk编译相关信息
+    compileSdkVersion = 26
+    buildToolsVersion = "27.0.3"
+    minSdkVersion = 19
+    targetSdkVersion = 26
+    versionCode = 1
+    versionName = "1.0"
+
 //  在 module 中可以使用 implementation rootProject.ext.dependencies[""] 来继承需要的包
 //  比如 implementation rootProject.ext.dependencies["EventBus"]
 //  方便管理整个项目的依赖包版本
 //  如果需要同一个依赖包的不同版本，请协商解决
-    dependencies = ["Support-Design"          : 'com.android.support:design:27.1.1',
-                    "Support-v7"              : 'com.android.support:support-v4:27.1.1',
-                    "Support-Appcompat-v7"    : 'com.android.support:appcompat-v7:26.1.0',
-                    "Constraint-layout"       : 'com.android.support.constraint:constraint-layout:1.1.3',
-                    "MultiDex"                : 'com.android.support:multidex:1.0.2',
+    dependencies = ["Support-Design"           : 'com.android.support:design:27.1.1',
+                    "Support-v7"               : 'com.android.support:support-v4:27.1.1',
+                    "Support-Appcompat-v7"     : 'com.android.support:appcompat-v7:26.1.0',
+                    "Constraint-layout"        : 'com.android.support.constraint:constraint-layout:1.1.3',
+                    "MultiDex"                 : 'com.android.support:multidex:1.0.2',
 
-                    "Arouter-api"             : 'com.alibaba:arouter-api:1.3.1',
-                    "Arouter-compiler"        : 'com.alibaba:arouter-compiler:1.1.4',
+                    "Arouter-api"              : 'com.alibaba:arouter-api:1.3.1',
+                    "Arouter-compiler"         : 'com.alibaba:arouter-compiler:1.1.4',
 
-                    "RxJava2"                 : 'io.reactivex.rxjava2:rxjava:2.1.14-RC1',
-                    "RxAndroid"               : 'io.reactivex.rxjava2:rxandroid:2.0.2',
-                    "RxLifecycle"             : 'com.trello.rxlifecycle2:rxlifecycle:2.2.0',
-                    "RxLifecycle-Android"     : 'com.trello.rxlifecycle2:rxlifecycle-android:2.2.0',
-                    "RxCache"                 : "com.github.VictorAlbertos.RxCache:runtime:1.8.3-2.x",
-                    "Jolyglot-Gson"           : 'com.github.VictorAlbertos.Jolyglot:gson:0.0.4',
+                    "RxJava2"                  : 'io.reactivex.rxjava2:rxjava:2.1.14-RC1',
+                    "RxAndroid"                : 'io.reactivex.rxjava2:rxandroid:2.0.2',
+                    "RxLifecycle"              : 'com.trello.rxlifecycle2:rxlifecycle:2.2.0',
+                    "RxLifecycle-Android"      : 'com.trello.rxlifecycle2:rxlifecycle-android:2.2.0',
+                    "RxCache"                  : "com.github.VictorAlbertos.RxCache:runtime:1.8.3-2.x",
+                    "Jolyglot-Gson"            : 'com.github.VictorAlbertos.Jolyglot:gson:0.0.4',
 
-                    "Retrofit2"               : 'com.squareup.retrofit2:retrofit:2.5.0',
+                    "Retrofit2"                : 'com.squareup.retrofit2:retrofit:2.5.0',
                     "Retrofit2ConvertGson"     : 'com.squareup.retrofit2:converter-gson:2.5.0',
-                    "Retrofit2AdapterRxJava2"   : 'com.squareup.retrofit2:adapter-rxjava2:2.5.0',
+                    "Retrofit2AdapterRxJava2"  : 'com.squareup.retrofit2:adapter-rxjava2:2.5.0',
                     "OkHttp3"                  : 'com.squareup.okhttp3:okhttp:3.14.0',
                     "OkHttp3LoggingInterceptor": 'com.squareup.okhttp3:logging-interceptor:3.14.0',
-                    "OkHttpUrlConnection"     : 'com.squareup.okhttp3:okhttp-urlconnection:3.2.0',
+                    "OkHttpUrlConnection"      : 'com.squareup.okhttp3:okhttp-urlconnection:3.2.0',
 
 
 
-                    "GreenDAO"                : 'org.greenrobot:greendao:3.2.2',
+                    "GreenDAO"                 : 'org.greenrobot:greendao:3.2.2',
 
-                    "EventBus"                : 'org.greenrobot:eventbus:3.1.1',
-                    "Glide"                   : 'com.github.bumptech.glide:glide:4.8.0',
-                    "Glide-annotationProcessor" : 'com.github.bumptech.glide:glide:4.8.0',
-                    "Glide-Transformations"   : 'jp.wasabeef:glide-transformations:2.0.1',
-                    "Gson"                    : 'com.google.code.gson:gson:2.8.2',
+                    "EventBus"                 : 'org.greenrobot:eventbus:3.1.1',
+                    "Glide"                    : 'com.github.bumptech.glide:glide:4.8.0',
+                    "Glide-annotationProcessor": 'com.github.bumptech.glide:glide:4.8.0',
+                    "Glide-Transformations"    : 'jp.wasabeef:glide-transformations:2.0.1',
+                    "Gson"                     : 'com.google.code.gson:gson:2.8.2',
 
-                    "Tinker"                  : 'com.tencent.tinker:tinker-android-lib:1.9.1',
-                    "Tinker-Anno"             : 'com.tencent.tinker:tinker-android-anno:1.9.1',
-                    "ButterKnife"             : 'com.jakewharton:butterknife:7.0.1',
-                    "Blurry"                  : 'jp.wasabeef:blurry:3.0.0']
-}
-
+                    "Tinker"                   : 'com.tencent.tinker:tinker-android-lib:1.9.1',
+                    "Tinker-Anno"              : 'com.tencent.tinker:tinker-android-anno:1.9.1',
+                    "ButterKnife"              : 'com.jakewharton:butterknife:7.0.1',
+                    "Blurry"                   : 'jp.wasabeef:blurry:3.0.0']
 
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
 }
 
