@@ -1,4 +1,4 @@
-package com.runningsnail.wowweather.entity;
+package com.runningsnail.miweather.entity;
 
 import java.util.ArrayList;
 import java.util.List;

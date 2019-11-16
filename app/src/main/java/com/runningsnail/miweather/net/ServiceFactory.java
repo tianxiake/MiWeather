@@ -1,4 +1,4 @@
-package com.runningsnail.wowweather.net;
+package com.runningsnail.miweather.net;
 
 /**
  * @author yongjie created on 2019/3/30.

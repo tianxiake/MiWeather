@@ -1,10 +1,10 @@
-package com.runningsnail.wowweather.activity;
+package com.runningsnail.miweather.activity;
 
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
-import com.runningsnail.wowweather.R;
+import com.runningsnail.miweather.R;
 
 
 public class MainActivity extends BaseActivity  {

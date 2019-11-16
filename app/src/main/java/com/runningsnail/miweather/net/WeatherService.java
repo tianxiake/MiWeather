@@ -1,4 +1,4 @@
-package com.runningsnail.wowweather.net;
+package com.runningsnail.miweather.net;
 
 
 

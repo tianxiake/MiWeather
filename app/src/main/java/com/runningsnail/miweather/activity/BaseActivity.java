@@ -1,4 +1,4 @@
-package com.runningsnail.wowweather.activity;
+package com.runningsnail.miweather.activity;
 
 import android.os.Bundle;
 
