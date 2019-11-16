@@ -1,0 +1,51 @@
+ext {
+    android = [
+            compileSdkVersion        : 28,
+            buildToolsVersion        : "28.0.3",
+            minSdkVersion            : 19,
+            targetSdkVersion         : 28,
+            versionCode              : 1,
+            versionName              : "1.0",
+            testInstrumentationRunner: "android.support.test.runner.AndroidJUnitRunner"
+    ]
+    dependVersion = [
+            refrofit2: "2.6.2"
+    ]
+
+    dependencies = [
+            //androidX
+            "androidx_material"        : 'com.google.android.material:material:1.0.0',
+            "androidx_cardView"        : 'androidx.cardview:cardview:1.0.0',
+            "androidx_appcompat"       : 'androidx.appcompat:appcompat:1.1.0',
+            "androidx_constraintLayout": 'androidx.constraintlayout:constraintlayout:1.1.3',
+            "androidx_multiDex"        : 'androidx.multidex:multidex:2.0.0',
+            "androidx_recyclerView"    : 'androidx.recyclerview:recyclerview:1.0.0',
+            "androidx_support_v4"      : 'androidx.legacy:legacy-support-v4:1.0.0',
+
+            //测试框架
+            "junit"                    : 'junit:junit:4.12',
+            "runner"                   : 'com.android.support.test:runner:1.0.2',
+            "espresso_core"            : 'com.android.support.test.espresso:espresso-core:3.0.2',
+
+            //异步任务
+            "RxJava3"                  : 'implementation io.reactivex.rxjava3:rxjava:3.0.0-RC4',
+            //RxJava3在Android中线程切换
+            "RxAndroid3"               : 'implementation io.reactivex.rxjava3:rxandroid:3.0.0-SNAPSHOT',
+            //RxJava3生命周期管理
+            "RxLifecycle3_Android"     : 'com.trello.rxlifecycle2:rxlifecycle-android:3.1.0',
+
+            //Okhttp3网络请求库的上层封装
+            "Retrofit2"                : 'com.squareup.retrofit2:retrofit:${dependVersion.refrofit2}',
+            "Retrofit2ConvertGson"     : 'com.squareup.retrofit2:converter-gson:${dependVersion.refrofit2}',
+            "Retrofit2AdapterRxJava2"  : 'com.squareup.retrofit2:adapter-rxjava2:${dependVersion.refrofit2}',
+
+            //网络请求库
+            "OkHttp3"                  : 'com.squareup.okhttp3:okhttp:4.2.2',
+            "OkHttp3LoggingInterceptor": 'com.squareup.okhttp3:logging-interceptor:4.2.1',
+
+            //json和实体的相互转换以及序列化与反序列化
+            "Gson"                     : 'com.google.code.gson:gson:2.8.6',
+    ]
+
+
+}

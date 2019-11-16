@@ -3,8 +3,6 @@ package com.runningsnail.base.log;
 import android.os.Process;
 import android.util.Log;
 
-import com.runningsnail.base.BuildConfig;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -14,7 +12,7 @@ import java.util.Date;
  */
 public class HiLogger {
 
-    private static volatile boolean OUTPUT_LOG = BuildConfig.LOG_ENABLE;
+    private static volatile boolean OUTPUT_LOG = false;
 
     public static void setLogEnable(boolean enable) {
         OUTPUT_LOG = enable;

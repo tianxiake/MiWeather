@@ -4,7 +4,7 @@
     android:layout_height="100dp">
 
     <!--添加按钮-->
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_top_add"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -14,7 +14,7 @@
         android:background="#0000FF" />
 
     <!--选项菜单-->
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_top_option"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -25,7 +25,7 @@
         android:background="#FF0000" />
 
     <!--位置名称-->
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_top_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,14 +36,14 @@
         android:textSize="18sp" />
 
     <!--指示器控件-->
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
         android:layout_height="10dp"
         android:layout_below="@id/tv_top_location"
         android:layout_centerInParent="true"
         android:background="#00FF00">
 
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 
 </RelativeLayout>
