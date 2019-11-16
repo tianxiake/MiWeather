@@ -3,7 +3,6 @@ package com.runningsnail.base.log;
 import android.os.Process;
 import android.util.Log;
 
-
 import com.runningsnail.base.BuildConfig;
 
 import java.text.SimpleDateFormat;
@@ -17,7 +16,7 @@ public class HiLogger {
 
     private static volatile boolean OUTPUT_LOG = BuildConfig.LOG_ENABLE;
 
-    public static void logEnable(boolean enable) {
+    public static void setLogEnable(boolean enable) {
         OUTPUT_LOG = enable;
     }
 
@@ -94,7 +93,6 @@ public class HiLogger {
     }
 
     private static String basicMessage(String message) {
-        long startTime = System.currentTimeMillis();
         if (message == null) {
             message = "null";
         }
@@ -102,11 +100,10 @@ public class HiLogger {
         stringBuilder.append("[")
                 .append(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").
                         format(new Date(System.currentTimeMillis())))
-                .append(" /").append(Process.myPid())
+                .append(" ").append(Process.myPid())
                 .append("/").append(Thread.currentThread().getId())
-                .append("/").append(Thread.currentThread().getName())
-                .append(" 耗时:").append(System.currentTimeMillis() - startTime)
-                .append("ms]")
+                .append(" ").append(Thread.currentThread().getName())
+                .append("]")
                 .append("==>");
 
         String format = String.format("%s %s", stringBuilder.toString(), message);

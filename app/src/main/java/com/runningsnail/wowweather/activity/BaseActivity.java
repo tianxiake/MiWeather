@@ -20,9 +20,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		buildLogTag();
-		setContentView(getContentViewId());
-		initView();
-		initData();
 	}
 
 	/**
@@ -31,22 +28,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 	protected void buildLogTag() {
 		TAG = this.getClass().getSimpleName();
 	}
-
-	/**
-	 * 布局ID
-	 */
-	public abstract int getContentViewId();
-
-	/**
-	 * 初始化数据
-	 */
-	public abstract void initData();
-
-	/**
-	 * 初始化View
-	 */
-	public abstract void initView();
-
 
 	@Override
 	protected void onDestroy() {

@@ -1,27 +1,22 @@
 package com.runningsnail.wowweather.activity;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+
 import com.runningsnail.wowweather.R;
-import com.runningsnail.wowweather.view.MainView;
 
-public class MainActivity extends BaseActivity implements MainView {
+import butterknife.ButterKnife;
 
-	@Override
-	public int getContentViewId() {
-		return R.layout.activity_main;
-	}
+public class MainActivity extends BaseActivity  {
 
-	@Override
-	public void initData() {
 
-	}
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+    }
 
-	@Override
-	public void initView() {
 
-	}
 
-	@Override
-	protected void onResume() {
-		super.onResume();
-	}
 }
