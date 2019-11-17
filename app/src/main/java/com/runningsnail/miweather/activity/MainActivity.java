@@ -10,55 +10,26 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.baidu.location.BDAbstractLocationListener;
-import com.baidu.location.BDLocation;
-import com.baidu.location.LocationClient;
-import com.baidu.location.LocationClientOption;
 import com.runningsnail.base.log.HiLogger;
+import com.runningsnail.miweather.LocationWrapper;
 import com.runningsnail.miweather.R;
+import com.runningsnail.miweather.entity.MiLocation;
 
 
 public class MainActivity extends BaseActivity  {
 
     private static final String TAG = "MainActivity";
-    private LocationClient locationClient;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         HiLogger.i(TAG, "onCreate");
         setContentView(R.layout.activity_main);
-        locationClient = new LocationClient(getApplicationContext());
-        LocationClientOption option = new LocationClientOption();
-        option.setIsNeedAddress(true);
-        locationClient.setLocOption(option);
-        locationClient.registerLocationListener(new BDAbstractLocationListener() {
+        LocationWrapper locationWrapper = new LocationWrapper(this);
+        locationWrapper.registerLocationCallback(new LocationWrapper.LocationListener() {
             @Override
-            public void onReceiveLocation(BDLocation bdLocation) {
-                HiLogger.i(TAG, "BD %s,%s,%s,%s,%s,%s,%s",
-                        bdLocation.getLongitude(),
-                        bdLocation.getLatitude(),
-                        bdLocation.getAddrStr(),
-                        bdLocation.getStreet(),
-                        bdLocation.getDistrict(),
-                        bdLocation.getCity(),
-                        bdLocation.getStreetNumber());
-            }
-        });
-
-        LocationClient locationClient2 = new LocationClient(getApplicationContext());
-        locationClient2.setLocOption(option);
-        locationClient2.registerLocationListener(new BDAbstractLocationListener() {
-            @Override
-            public void onReceiveLocation(BDLocation bdLocation) {
-                HiLogger.i(TAG, "BD2 %s,%s,%s,%s,%s,%s,%s",
-                        bdLocation.getLongitude(),
-                        bdLocation.getLatitude(),
-                        bdLocation.getAddrStr(),
-                        bdLocation.getStreet(),
-                        bdLocation.getDistrict(),
-                        bdLocation.getCity(),
-                        bdLocation.getStreetNumber());
+            public void onReceiveLocation(MiLocation miLocation) {
+                HiLogger.i(TAG, "miLocation %s", miLocation);
             }
         });
 
@@ -67,7 +38,7 @@ public class MainActivity extends BaseActivity  {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
             } else {
-                locationClient.start();
+                locationWrapper.start();
             }
 
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {

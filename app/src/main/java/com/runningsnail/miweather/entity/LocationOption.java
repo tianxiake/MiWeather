@@ -3,7 +3,7 @@ package com.runningsnail.miweather.entity;
 /**
  * @author yongjie created on 2019-11-16.
  */
-public class HelpOption {
+public class LocationOption {
 
 
 	public enum CoorType {
