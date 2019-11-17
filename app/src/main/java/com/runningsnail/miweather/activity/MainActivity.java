@@ -20,41 +20,77 @@ public class MainActivity extends BaseActivity  {
 
     private static final String TAG = "MainActivity";
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        HiLogger.i(TAG, "onCreate");
-        setContentView(R.layout.activity_main);
-        LocationWrapper locationWrapper = new LocationWrapper(this);
-        locationWrapper.registerLocationCallback(new LocationWrapper.LocationListener() {
-            @Override
-            public void onReceiveLocation(MiLocation miLocation) {
-                HiLogger.i(TAG, "miLocation %s", miLocation);
-            }
-        });
+	@Override
+	protected void onCreate(@Nullable Bundle savedInstanceState) {
+	    super.onCreate(savedInstanceState);
+	    HiLogger.i(TAG, "onCreate");
+	    setContentView(R.layout.activity_main);
+	    LocationWrapper locationWrapper = new LocationWrapper(this);
+	    locationWrapper.registerLocationCallback(new LocationWrapper.LocationListener() {
+	        @Override
+	        public void onReceiveLocation(MiLocation miLocation) {
+	            HiLogger.i(TAG, "miLocation %s", miLocation);
+	        }
+	    });
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+	    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-            } else {
-                locationWrapper.start();
-            }
+	        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+	            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+	        } else {
+	            locationWrapper.start();
+	        }
 
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 2);
-            }
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_WIFI_STATE) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_WIFI_STATE}, 3);
-            }
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_NETWORK_STATE}, 4);
-            }
-        }
-    }
+	        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+	            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 2);
+	        }
+	        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_WIFI_STATE) != PackageManager.PERMISSION_GRANTED) {
+	            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_WIFI_STATE}, 3);
+	        }
+	        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED) {
+	            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_NETWORK_STATE}, 4);
+	        }
+	    }
+	}
+
+	@Override
+	protected void onRestart() {
+		super.onRestart();
+		HiLogger.i(TAG,"onRestart");
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		HiLogger.i(TAG,"onStart");
+	}
+
+	@Override
+	protected void onResume() {
+	    super.onResume();
+	    HiLogger.i(TAG, "onResume");
+	}
+
+	@Override
+	protected void onPause() {
+	    super.onPause();
+	    HiLogger.i(TAG, "onPause");
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+		HiLogger.i(TAG,"onStop");
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		HiLogger.i(TAG, "onDestroy");
+	}
 
 
-    @Override
+	@Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
@@ -93,15 +129,5 @@ public class MainActivity extends BaseActivity  {
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        HiLogger.i(TAG, "onResume");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        HiLogger.i(TAG, "onPause");
-    }
 }
+

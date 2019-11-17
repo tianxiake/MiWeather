@@ -23,35 +23,48 @@ public class LocationWrapper {
 		locationClient = new LocationClient(context.getApplicationContext());
 		locationClientOption = new LocationClientOption();
 		locationClientOption.setIsNeedAddress(true);
+		locationClientOption.setCoorType(LocationOption.CoorType.GCJ02.coorType);
 		locationClient.setLocOption(locationClientOption);
 	}
 
 	public LocationWrapper(Context context, LocationOption locationOption) {
 		locationClient = new LocationClient(context.getApplicationContext());
 		locationClientOption = new LocationClientOption();
-		locationClientOption.setIsNeedAddress(locationOption.isNeedAddress());
-		locationClientOption.setCoorType(locationOption.getCoorType().coorType);
-		locationClient.setLocOption(locationClientOption);
+		setOption(locationOption);
 	}
 
 	public void setLocationOption(LocationOption locationOption) {
-		locationClientOption.setIsNeedAddress(locationOption.isNeedAddress());
-		locationClientOption.setCoorType(locationOption.getCoorType().coorType);
-		locationClient.setLocOption(locationClientOption);
+		setOption(locationOption);
 	}
 
+	/**
+	 * start调用之后会返回一次定位信息
+	 */
 	public void start() {
 		locationClient.start();
 	}
 
+	/**
+	 * 停止定位信息,重新获取定位信息使用 {@link #start()}
+	 */
 	public void stop() {
 		locationClient.stop();
 	}
 
-
+	/**
+	 * 重新启动定位服务
+	 */
 	public void restart() {
 		locationClient.restart();
 	}
+
+	/**
+	 * 主动请求获取位置信息
+	 */
+	public void requestLocation() {
+		locationClient.requestLocation();
+	}
+
 
 	public void registerLocationCallback(LocationListener LocationListener) {
 		locationClient.registerLocationListener(LocationListener);
@@ -61,6 +74,14 @@ public class LocationWrapper {
 		locationClient.unRegisterLocationListener(LocationListener);
 
 	}
+
+	private void setOption(LocationOption locationOption) {
+		locationClientOption.setIsNeedAddress(locationOption.isNeedAddress());
+		locationClientOption.setCoorType(locationOption.getCoorType().coorType);
+		locationClientOption.setIsNeedAltitude(locationOption.isNeedAltitude());
+		locationClient.setLocOption(locationClientOption);
+	}
+
 
 	public static abstract class LocationListener extends BDAbstractLocationListener {
 		@Override

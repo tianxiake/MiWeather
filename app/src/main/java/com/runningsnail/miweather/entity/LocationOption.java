@@ -38,6 +38,11 @@ public class LocationOption {
 	private boolean needAddress = true;
 
 	/**
+	 * 定位是否需要海拔高度信息 默认不需要
+	 */
+	private boolean needAltitude = false;
+
+	/**
 	 * 经纬度坐标的标准默认是国测局坐标
 	 */
 	private CoorType coorType = CoorType.GCJ02;
@@ -56,5 +61,23 @@ public class LocationOption {
 
 	public void setCoorType(CoorType coorType) {
 		this.coorType = coorType;
+	}
+
+	public boolean isNeedAltitude() {
+		return needAltitude;
+	}
+
+	public void setNeedAltitude(boolean needAltitude) {
+		this.needAltitude = needAltitude;
+	}
+
+	@Override
+	public String toString() {
+		final StringBuilder sb = new StringBuilder("LocationOption{");
+		sb.append("needAddress=").append(needAddress);
+		sb.append(", needAltitude=").append(needAltitude);
+		sb.append(", coorType=").append(coorType);
+		sb.append('}');
+		return sb.toString();
 	}
 }

@@ -5,13 +5,18 @@ package com.runningsnail.miweather.entity;
  */
 public class MiLocation {
 	/**
-	 * 精度值
+	 * 经度值
 	 */
-	private double altitude;
+	private double longitude;
 	/**
 	 * 纬度值
 	 */
 	private double latitude;
+
+	/**
+	 * 海拔高度 默认不开启
+	 */
+	private double altitude;
 
 	/**
 	 * 获取国家
@@ -47,13 +52,17 @@ public class MiLocation {
 	 */
 	private String addrStr;
 
+	/**
+	 * 定位码提示
+	 */
+	private int locType;
 
-	public double getAltitude() {
-		return altitude;
+	public double getLongitude() {
+		return longitude;
 	}
 
-	public void setAltitude(double altitude) {
-		this.altitude = altitude;
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
 	}
 
 	public double getLatitude() {
@@ -120,11 +129,28 @@ public class MiLocation {
 		this.addrStr = addrStr;
 	}
 
+	public int getLocType() {
+		return locType;
+	}
+
+	public void setLocType(int locType) {
+		this.locType = locType;
+	}
+
+	public double getAltitude() {
+		return altitude;
+	}
+
+	public void setAltitude(double altitude) {
+		this.altitude = altitude;
+	}
+
 	@Override
 	public String toString() {
 		final StringBuilder sb = new StringBuilder("MiLocation{");
-		sb.append("altitude=").append(altitude);
+		sb.append("longitude=").append(longitude);
 		sb.append(", latitude=").append(latitude);
+		sb.append(", altitude=").append(altitude);
 		sb.append(", country='").append(country).append('\'');
 		sb.append(", province='").append(province).append('\'');
 		sb.append(", city='").append(city).append('\'');
@@ -132,6 +158,7 @@ public class MiLocation {
 		sb.append(", streetNumer='").append(streetNumer).append('\'');
 		sb.append(", district='").append(district).append('\'');
 		sb.append(", addrStr='").append(addrStr).append('\'');
+		sb.append(", locType=").append(locType);
 		sb.append('}');
 		return sb.toString();
 	}

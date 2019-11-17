@@ -11,8 +11,9 @@ public class EntityConvertHelper {
 	public static MiLocation convertBDLocationTo(BDLocation bdLocation) {
 		MiLocation miLocation = new MiLocation();
 		if (bdLocation != null) {
+			miLocation.setLongitude(bdLocation.getLongitude());
 			miLocation.setAltitude(bdLocation.getAltitude());
-			miLocation.setLatitude(bdLocation.getLongitude());
+			miLocation.setLatitude(bdLocation.getLatitude());
 			miLocation.setCity(bdLocation.getCity());
 			miLocation.setCountry(bdLocation.getCountry());
 			miLocation.setProvince(bdLocation.getProvince());
@@ -20,6 +21,7 @@ public class EntityConvertHelper {
 			miLocation.setStreetNumer(bdLocation.getStreetNumber());
 			miLocation.setDistrict(bdLocation.getDistrict());
 			miLocation.setAddrStr(bdLocation.getAddrStr());
+			miLocation.setLocType(bdLocation.getLocType());
 		}
 		return miLocation;
 	}

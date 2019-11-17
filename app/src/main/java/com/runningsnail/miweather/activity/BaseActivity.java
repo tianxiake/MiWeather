@@ -3,6 +3,7 @@ package com.runningsnail.miweather.activity;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -21,6 +22,23 @@ public abstract class BaseActivity extends AppCompatActivity {
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		buildLogTag();
+		hideActionBar();
+	}
+
+	/**
+	 * 是否隐藏ActionBar默认隐藏,子类可重写此方法
+	 */
+	protected boolean shouldHideActionBar() {
+		return true;
+	}
+
+	private void hideActionBar() {
+		if (shouldHideActionBar()) {
+			ActionBar supportActionBar = getSupportActionBar();
+			if (supportActionBar != null) {
+				supportActionBar.hide();
+			}
+		}
 	}
 
 	/**
