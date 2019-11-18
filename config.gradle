@@ -22,6 +22,8 @@ ext {
             "androidx_multiDex"        : 'androidx.multidex:multidex:2.0.0',
             "androidx_recyclerView"    : 'androidx.recyclerview:recyclerview:1.0.0',
             "androidx_support_v4"      : 'androidx.legacy:legacy-support-v4:1.0.0',
+            //google官方的运行时权限申请框架支持Androidx
+            "request_permission"       : 'pub.devrel:easypermissions:3.0.0',
 
             //测试框架
             "junit"                    : 'junit:junit:4.12',

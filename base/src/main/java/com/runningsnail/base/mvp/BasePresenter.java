@@ -1,4 +1,4 @@
-package com.runningsnail.base;
+package com.runningsnail.base.mvp;
 
 /**
  * @author yongjie created on 2019-07-22.

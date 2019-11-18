@@ -3,9 +3,6 @@ package com.runningsnail.base.log;
 import android.os.Process;
 import android.util.Log;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 /**
  * @author create by yongjie on 2018/6/29
  * Log工具类
@@ -40,8 +37,7 @@ public class HiLogger {
 
     public static void d(String tag, String format, Object... obj) {
         if (OUTPUT_LOG) {
-            String message = String.format(format, obj);
-            Log.v(tag, basicMessage(message));
+            Log.v(tag, basicMessage(format, obj));
         }
     }
 
@@ -90,22 +86,65 @@ public class HiLogger {
         }
     }
 
-    private static String basicMessage(String message) {
-        if (message == null) {
-            message = "null";
+    private static String basicMessage(String message, Object... objects) {
+        StringBuilder contentBuilder = new StringBuilder();
+        String newMessage = message.replaceAll("\\{\\}", "%s");
+        contentBuilder.append("%s ")
+                .append(newMessage);
+        int charNumber = findReplaceCharsNumber(newMessage);
+        Object[] finalParams = new Object[charNumber + 1];
+        finalParams[0] = basicHeadMessage();
+        //存在%s这个特殊的占位符
+        if (charNumber > 0 && objects != null) {
+            if (objects.length - finalParams.length - 1 >= 0) {
+                //参数比%s多的情况
+                for (int i = 0; i < finalParams.length - 1; i++) {
+                    finalParams[i + 1] = objects[i];
+                }
+            } else {
+                //参数比%s少的情况
+                for (int i = 0; i < objects.length; i++) {
+                    finalParams[i + 1] = objects[i];
+                }
+            }
+            return String.format(contentBuilder.toString(), finalParams);
+
         }
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("[")
-                .append(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").
-                        format(new Date(System.currentTimeMillis())))
+        return String.format(contentBuilder.toString(), finalParams);
+    }
+
+    /**
+     * 查找字符串中%s的个数
+     */
+    private static int findReplaceCharsNumber(String message) {
+        int formatCount = 0;
+        int flag = 0;
+        char[] chars = message.toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            if (chars[i] == '%') {
+                flag = 1;
+            } else if (chars[i] == 's') {
+                if (flag == 1) {
+                    formatCount++;
+                }
+                flag = 0;
+            } else {
+                flag = 0;
+            }
+        }
+        return formatCount;
+    }
+
+    private static String basicHeadMessage() {
+        StringBuilder basicBuilder = new StringBuilder();
+        basicBuilder.append("[")
+//                .append(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss"). 这一步时间转换特别耗时1ms以上
+//                        format(new Date(System.currentTimeMillis())))
                 .append(" ").append(Process.myPid())
                 .append("/").append(Thread.currentThread().getId())
                 .append(" ").append(Thread.currentThread().getName())
-                .append("]")
-                .append("==>");
-
-        String format = String.format("%s %s", stringBuilder.toString(), message);
-        return format;
+                .append("]");
+        return basicBuilder.toString();
     }
 
 
@@ -122,7 +161,5 @@ public class HiLogger {
         builder.append("[").append(className).append(", ").append(methodName).append("(), ").append(lineName).append("]");
         return builder.toString();
     }
-
-
 }
 
