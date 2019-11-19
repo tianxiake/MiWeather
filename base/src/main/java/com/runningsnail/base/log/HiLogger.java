@@ -87,10 +87,17 @@ public class HiLogger {
     }
 
     private static String basicMessage(String message, Object... objects) {
-        StringBuilder contentBuilder = new StringBuilder();
-        String newMessage = message.replaceAll("\\{\\}", "%s");
-        contentBuilder.append("%s ")
-                .append(newMessage);
+        String handleMessage = buildHandleMessage(message);
+        String formatMessage = buildFormatMessage(handleMessage);
+        Object[] finalParams = buildFormatObjects(handleMessage, objects);
+        return String.format(formatMessage, finalParams);
+    }
+
+    private static String buildHandleMessage(String message) {
+        return message.replaceAll("\\{\\}", "%s");
+    }
+
+    private static Object[] buildFormatObjects(String newMessage, Object[] objects) {
         int charNumber = findReplaceCharsNumber(newMessage);
         Object[] finalParams = new Object[charNumber + 1];
         finalParams[0] = basicHeadMessage();
@@ -107,10 +114,15 @@ public class HiLogger {
                     finalParams[i + 1] = objects[i];
                 }
             }
-            return String.format(contentBuilder.toString(), finalParams);
-
         }
-        return String.format(contentBuilder.toString(), finalParams);
+        return finalParams;
+    }
+
+    private static String buildFormatMessage(String newMessage) {
+        StringBuilder contentBuilder = new StringBuilder();
+        contentBuilder.append("%s ")
+                .append(newMessage);
+        return contentBuilder.toString();
     }
 
     /**
@@ -140,7 +152,7 @@ public class HiLogger {
         basicBuilder.append("[")
 //                .append(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss"). 这一步时间转换特别耗时1ms以上
 //                        format(new Date(System.currentTimeMillis())))
-                .append(" ").append(Process.myPid())
+                .append(Process.myPid())
                 .append("/").append(Thread.currentThread().getId())
                 .append(" ").append(Thread.currentThread().getName())
                 .append("]");
