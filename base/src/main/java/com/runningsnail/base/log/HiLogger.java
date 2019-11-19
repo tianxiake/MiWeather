@@ -104,12 +104,12 @@ public class HiLogger {
         //存在%s这个特殊的占位符
         if (charNumber > 0 && objects != null) {
             if (objects.length - finalParams.length - 1 >= 0) {
-                //参数比%s多的情况
+                //参数比%s多的情况截取处理
                 for (int i = 0; i < finalParams.length - 1; i++) {
                     finalParams[i + 1] = objects[i];
                 }
             } else {
-                //参数比%s少的情况
+                //参数比%s少的情况填充处理
                 for (int i = 0; i < objects.length; i++) {
                     finalParams[i + 1] = objects[i];
                 }
