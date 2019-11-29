@@ -1,4 +1,4 @@
-package com.runningsnail.miweather.utils;
+package com.runningsnail.base.utils;
 
 import android.annotation.SuppressLint;
 import android.text.TextUtils;
