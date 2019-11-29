@@ -9,13 +9,15 @@ import androidx.annotation.Nullable;
 import com.runningsnail.base.log.HiLogger;
 import com.runningsnail.miweather.R;
 
-import java.util.List;
+import permissions.dispatcher.NeedsPermission;
+import permissions.dispatcher.OnNeverAskAgain;
+import permissions.dispatcher.OnPermissionDenied;
+import permissions.dispatcher.OnShowRationale;
+import permissions.dispatcher.PermissionRequest;
+import permissions.dispatcher.RuntimePermissions;
 
-import pub.devrel.easypermissions.AfterPermissionGranted;
-import pub.devrel.easypermissions.EasyPermissions;
-
-
-public class MainActivity extends BaseActivity  implements EasyPermissions.PermissionCallbacks {
+@RuntimePermissions
+public class MainActivity extends BaseActivity {
 
 	private static final int FINE_LOCATION_CODE = 0x11;
 
@@ -24,10 +26,31 @@ public class MainActivity extends BaseActivity  implements EasyPermissions.Permi
 	    super.onCreate(savedInstanceState);
 	    HiLogger.i(TAG, "onCreate");
 	    setContentView(R.layout.activity_main);
-		EasyPermissions.requestPermissions(this,
-				"用于获取天气的信息哦", FINE_LOCATION_CODE,
-				Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION);
+		MainActivityPermissionsDispatcher.getWeatherWithPermissionCheck(this);
 	}
+
+	@NeedsPermission({Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.WRITE_EXTERNAL_STORAGE})
+	public void getWeather() {
+		HiLogger.i(TAG, "getWeather");
+	}
+
+	@OnPermissionDenied({Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.WRITE_EXTERNAL_STORAGE})
+	public void onGetWeatherDeny() {
+		HiLogger.i(TAG, "onGetWeatherDeny");
+	}
+
+	@OnNeverAskAgain({Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.WRITE_EXTERNAL_STORAGE})
+	public void onGetWeatherNeverAskAgain() {
+		HiLogger.i(TAG, "onGetWeatherNeverAskAgain");
+	}
+
+	@OnShowRationale({Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.WRITE_EXTERNAL_STORAGE})
+	public void onGetWeatherShowRotionale(PermissionRequest permissionRequest) {
+		HiLogger.i(TAG, "onGetWeatherShowRotionale");
+		permissionRequest.proceed();
+	}
+
+
 
 	@Override
 	protected void onRestart() {
@@ -65,32 +88,10 @@ public class MainActivity extends BaseActivity  implements EasyPermissions.Permi
 		HiLogger.i(TAG, "onDestroy");
 	}
 
-	@AfterPermissionGranted(FINE_LOCATION_CODE)
-	public void requestFineLocation() {
-		HiLogger.i(TAG, "requestFineLocation");
-		String[] perms = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.WRITE_EXTERNAL_STORAGE};
-		if (EasyPermissions.hasPermissions(this, perms)) {
-			HiLogger.i(TAG, "权限都获取了 哈哈");
-		} else {
-			EasyPermissions.requestPermissions(this, "用于天气服务哦", FINE_LOCATION_CODE, perms);
-		}
-	}
-
-
 	@Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-		EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
-    }
-
-	@Override
-	public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
-		HiLogger.d(TAG, "onPermissionsGranted A:{} ",requestCode);
-	}
-
-	@Override
-	public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
-
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+		MainActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
 	}
 }
 
